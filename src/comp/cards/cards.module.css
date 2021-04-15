@@ -5,23 +5,16 @@
     justify-content: space-around;
 }
 .innerCard{
-    box-shadow: 10px 10px 8px #888888;
+    box-shadow: 7px 8px 8px #888888;
     max-width: 200px;
-    background-color: rgb(226, 199, 130);
+    background-color: rgb(233, 230, 221);
     margin: 10px;
     padding: 10px;
     border-radius: 10px;
     border-bottom: 5px solid rgb(52, 20, 128);
 
 }
-.one{
-    height: 60%;
-}
-.two{
-    height: 20%;
-
-}
-.three{
-    height: 20%;
-
+.count{
+    font-size: 20em;
+    font-weight: bold;
 }

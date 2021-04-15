@@ -3,8 +3,8 @@
 // function BarChart() {
 //   return (
 //     <div className="body">
-      
-      
+
+
 //     </div>
 //   );
 // }
@@ -12,7 +12,7 @@
 // export default BarChart;
 
 
-import React ,{useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
@@ -34,13 +34,37 @@ const useStyles = makeStyles((theme) => ({
 
 
 
+
+
 export default function NativeSelects() {
   const classes = useStyles();
-  
+
   const [state, setState] = React.useState({
     country: 'Global',
-    
+
   });
+
+  let [countries, setCuntries] = useState([{}]);
+
+  let url = 'https://api.covid19api.com/countries'
+
+  let fetchData = async () => {
+    let response = await fetch(url)
+      .then((response) => response.json())
+      .then((json) => setCuntries(json));
+
+  }
+  useEffect(() => {
+    fetchData();
+  }, [])
+
+  let y = [];
+
+  countries.map((obj, ind) => {
+
+    y.push(obj.Country)
+
+  })
 
   const handleChange = (event) => {
     const country = event.target.name;
@@ -51,7 +75,7 @@ export default function NativeSelects() {
   };
 
 
-// console.log(state)
+
   return (
     <div>
       <h1>Covid 19 Tracker App</h1>
@@ -67,13 +91,11 @@ export default function NativeSelects() {
           }}
         >
           <option value={"Global"}>Global</option>
-          <option value={"Afghanistan"}>Afghanistan</option>
-          <option value={"India"}>India</option>
-          <option value={"Iran"}>Iran</option>
+          {y.map((country, i) => <option key={i} value={country}>{country}</option>)}
         </Select>
       </FormControl>
 
-      <Cards countryName={state}  />
+      <Cards countryName={state} />
     </div>
   );
 }
