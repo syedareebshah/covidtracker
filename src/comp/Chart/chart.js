@@ -1,16 +1,15 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
-
-
+import CircularProgress from '@material-ui/core/CircularProgress';
+import NewCom from '../../Pie';
 
 
 function BarChart(props) {
-    
-    
+       
     let TotalCases = parseInt(props.report.cases)
     let TotalDeaths = parseInt(props.report.deaths)
     let TotalRecovered = parseInt(props.report.recovered)
-
+    console.log(props)
     
     const data = {
         labels: ['Total Cases', 'Total Deaths', 'Total Recovered'],
@@ -30,21 +29,38 @@ function BarChart(props) {
         ]
         
     };
+    if(props.msg === "GlobalData"){
 
-    return (
-        <div>
-            <h2>Bar Example (custom size)</h2>
-            <Bar
-                data={data}
-                width={100}
-                height={100}
-                options={{
-                    maintainAspectRatio: false
-                }}
-            />
-        </div>
-    );
-
+        return(
+            <div>
+                <NewCom countryData={props.report} />
+            </div>
+        )
+        
+        
+    }else if(props.msg === "CountryData")
+    {
+        return (
+            <div>
+                <Bar
+                    data={data}
+                    width={100}
+                    height={300}
+                    options={{
+                        maintainAspectRatio: false
+                    }}
+                />
+            </div>
+        );
+    }
+    else{
+        return(
+            <div>
+                <CircularProgress color="secondary" />
+            </div>
+        )
+    }
+        
 }
 
 

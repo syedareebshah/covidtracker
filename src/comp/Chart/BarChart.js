@@ -1,25 +1,8 @@
-// import './App.css';
-
-// function BarChart() {
-//   return (
-//     <div className="body">
-
-
-//     </div>
-//   );
-// }
-
-// export default BarChart;
-
-
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import Prec from '../../Prec';
 import Cards from '../cards/Cards';
 
 const useStyles = makeStyles((theme) => ({
@@ -31,9 +14,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
 }));
-
-
-
 
 
 export default function NativeSelects() {
@@ -87,7 +67,6 @@ export default function NativeSelects() {
           onChange={handleChange}
           inputProps={{
             name: 'country',
-            // id: 'filled-age-native-simple',
           }}
         >
           <option value={"Global"}>Global</option>

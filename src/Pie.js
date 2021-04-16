@@ -1,35 +1,40 @@
 import React from 'react';
 import {Pie} from 'react-chartjs-2';
+import './App.css'
 
-const data = {
-	labels: [
-		'Red',
-		'Blue',
-		'Yellow'
-	],
-	datasets: [{
-		data: [300, 50, 100],
-		backgroundColor: [
-		'#FF6384',
-		'#36A2EB',
-		'#FFCE56'
-		],
-		hoverBackgroundColor: [
-		'#FF6384',
-		'#36A2EB',
-		'#FFCE56'
-		]
-	}]
-};
+let NewCom = (props) => {
 
-
-//   displayName: 'PieExample',
+    
+    
+    let a = parseInt(props.countryData.cases)
+    let b = parseInt(props.countryData.deaths)
+    let c = parseInt(props.countryData.recovered)
+    
+    const data = {
+        labels: [
+            'Total Cases',
+            'Total Deaths',
+            'Total Recovered'
+        ],
+        datasets: [{
+            data: [a,b,c],
+            backgroundColor: [
+                '#FF6384',
+                '#36A2EB',
+                '#FFCE56'
+            ],
+            hoverBackgroundColor: [
+                '#FF6384',
+                '#36A2EB',
+                '#FFCE56'
+            ]
+        }]
+    };
+    
 
  
-let NewCom=()=>{
     return (
-        <div>
-          <h2>Pie Example</h2>
+        <div className='PieChart'>
           <Pie data={data} />
         </div>
       );

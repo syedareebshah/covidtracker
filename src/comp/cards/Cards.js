@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import style from './cards.module.css'
-import CountUp from 'react-countup';
 import BarChart from '../Chart/chart';
 
 const Cards = (props) => {
 
     let [state, setStete] = useState([])
+    let [msg,setMsg] = useState('')
 
     let date = new Date();
 
@@ -20,6 +20,7 @@ const Cards = (props) => {
             let response = await fetch(url);
             let fetchGot = await response.json()
             setStete(fetchGot);
+            setMsg("CountryData")
         }
         catch (err) {
             console.log(err, "error")
@@ -40,6 +41,7 @@ const Cards = (props) => {
                 recovered: x.recovered
             }
             setStete(obj)
+            setMsg("GlobalData")
         }
         catch (err) {
             console.log("error", err)
@@ -67,18 +69,6 @@ const Cards = (props) => {
                 <div className={style.innerCard}>
                     <h3>New Confirmed Cases</h3>
 
-                    
-                        {/* <h3>
-                        <CountUp 
-                         start={0}
-                         end={200}
-                         separator=","
-                         duration={2.75}
-                        />
-                        </h3> */}
-
-                    
-
                     <h3>{state.cases}</h3>
 
                     <p>Dated: {date.getDate()} {date.getMonth() + 1} {date.getFullYear()}</p>
@@ -100,7 +90,7 @@ const Cards = (props) => {
 
                 </div>
             </div>
-            <BarChart report={state} />
+            <BarChart report={state} msg={msg} />
         </div>
     );
 }
