@@ -5,8 +5,8 @@
     justify-content: space-around;
 }
 .innerCard{
-    box-shadow: 7px 8px 8px #888888;
-    max-width: 200px;
+    box-shadow: 7px 8px 8px #c4b9b9;
+    /* max-width: 200px; */
     background-color: rgb(233, 230, 221);
     margin: 10px;
     padding: 10px;
@@ -14,7 +14,21 @@
     border-bottom: 5px solid rgb(52, 20, 128);
 
 }
-.count{
-    font-size: 20em;
-    font-weight: bold;
+.innerCard>h3{
+    margin: 0 auto;
 }
+.innerCard>p{
+    margin: 0 auto;
+}
+
+@media only screen and (max-width: 600px) {
+    .card {
+      flex-direction: column;
+      align-content: center;
+    }
+    .innerCard{
+        width: 90%;
+    }
+  }
+
+

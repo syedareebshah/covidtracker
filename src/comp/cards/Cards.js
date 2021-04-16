@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import style from './cards.module.css'
 import CountUp from 'react-countup';
+import BarChart from '../Chart/chart';
 
 const Cards = (props) => {
 
-    let [state, setStete] = useState([])    
+    let [state, setStete] = useState([])
 
     let date = new Date();
 
@@ -28,21 +29,17 @@ const Cards = (props) => {
     let globalFetch = async () => {
         try {
             let globalData = await fetch(global_url)
-            let gotData = await globalData.json(); 
-            let x = gotData.data            
-    x['cases'] = x['total_cases']
-    x['deaths'] = x['death_cases']
-    x['recovered'] = x['recovery_cases']
-    let obj = {
-        cases: x.cases,
-        deaths: x.deaths,
-        recovered: x.recovered
-    }
-    setStete(obj)
-            
-            console.log(obj,".....!!")
-                // .then((globalData) => globalData.json())
-                // .then((json) => setStete(json));
+            let gotData = await globalData.json();
+            let x = gotData.data
+            x['cases'] = x['total_cases']
+            x['deaths'] = x['death_cases']
+            x['recovered'] = x['recovery_cases']
+            let obj = {
+                cases: x.cases,
+                deaths: x.deaths,
+                recovered: x.recovered
+            }
+            setStete(obj)
         }
         catch (err) {
             console.log("error", err)
@@ -54,7 +51,6 @@ const Cards = (props) => {
         let dummy = async () => {
             if (Query === 'Global') {
                 await globalFetch()
-                
             }
             else {
                 await fetchData();
@@ -70,22 +66,27 @@ const Cards = (props) => {
             <div className={style.card}>
                 <div className={style.innerCard}>
                     <h3>New Confirmed Cases</h3>
+
                     
-                        {/* <CountUp 
+                        {/* <h3>
+                        <CountUp 
                          start={0}
-                         end={100}
+                         end={200}
+                         separator=","
                          duration={2.75}
-                        /> */}
-                        
-                         
-                   <h3>{state.cases}</h3>
-                   
+                        />
+                        </h3> */}
+
+                    
+
+                    <h3>{state.cases}</h3>
+
                     <p>Dated: {date.getDate()} {date.getMonth() + 1} {date.getFullYear()}</p>
                 </div>
                 <div className={style.innerCard}>
                     <h3>New Confirmed Deaths</h3>
                     <h3>
-                    {state.deaths}
+                        {state.deaths}
                     </h3>
                     <p>Dated: {date.getDate()} {date.getMonth() + 1} {date.getFullYear()}</p>
 
@@ -93,12 +94,13 @@ const Cards = (props) => {
                 <div className={style.innerCard}>
                     <h3>New Confirmed Recovered</h3>
                     <h3>
-                    {state.recovered}
+                        {state.recovered}
                     </h3>
                     <p>Dated: {date.getDate()} {date.getMonth() + 1} {date.getFullYear()}</p>
 
                 </div>
             </div>
+            <BarChart report={state} />
         </div>
     );
 }

@@ -2,6 +2,7 @@ import './App.css';
 import Cards from './comp/cards/Cards';
 import NativeSelects from './comp/Chart/BarChart';
 import BarChart from './comp/Chart/chart';
+import NewCom from './Pie';
 import Prec from './Prec';
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       <NativeSelects />
       {/* <Prec /> */}
       {/* <BarChart /> */}
+      <NewCom />
     </div>
   );
 }
