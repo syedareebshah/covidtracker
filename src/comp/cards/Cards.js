@@ -71,7 +71,7 @@ const Cards = (props) => {
 
                     <h3>{state.cases}</h3>
 
-                    <p>Dated: {date.getDate()} {date.getMonth() + 1} {date.getFullYear()}</p>
+                    <p>Dated: {date.getDate()}-{date.getMonth() + 1}-{date.getFullYear()}</p>
                 </div>
                 <div className={style.innerCard}>
                     <h3>New Confirmed Deaths</h3>
